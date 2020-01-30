@@ -1,0 +1,17 @@
+{
+    "name": "retrowaver/php-proxy-checker",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "retrowaver",
+            "email": "23421260+retrowaver@users.noreply.github.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Retrowaver\\ProxyChecker\\": "src/"
+        }
+    }
+}
