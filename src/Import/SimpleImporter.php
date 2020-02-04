@@ -7,6 +7,13 @@ use Retrowaver\ProxyChecker\Entity\ProxyInterface;
 
 class SimpleImporter
 {
+    /**
+     * Takes an array of strings in ip:port format. Returns an array of Proxy objects
+     * 
+     * @param string[] $proxyArray
+     * @param string|null $protocol
+     * @return ProxyInterface[]
+     */
     public function import(array $proxyArray, ?string $protocol = 'http'): array
     {
         $proxies = [];
@@ -16,6 +23,11 @@ class SimpleImporter
         return $proxies;
     }
 
+    /**
+     * @param string $row proxy string in ip:port format
+     * @param string $protocol
+     * @return ProxyInterfafce
+     */
     protected function getProxyFromRow(string $row, string $protocol): ProxyInterface
     {
         $row = explode(':', $row);

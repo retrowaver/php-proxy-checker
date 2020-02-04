@@ -7,6 +7,9 @@ use Retrowaver\ProxyChecker\Entity\ProxyInterface;
 
 class ResponseCheckerBuilder implements ResponseCheckerInterface
 {
+    /**
+     * @var \Closure[]
+     */
     protected $constraints = [];
 
     public function checkResponse(
@@ -22,6 +25,12 @@ class ResponseCheckerBuilder implements ResponseCheckerInterface
         return true;
     }
 
+    /**
+     * Adds a constraint that checks whether phrase `$phrase` occurs in response body
+     * 
+     * @param string $phrase
+     * @return self
+     */
     public function bodyContains(string $phrase): self
     {
         $this->constraints[] = function (ResponseInterface $response, ProxyInterface $proxy) use ($phrase) {
@@ -31,6 +40,11 @@ class ResponseCheckerBuilder implements ResponseCheckerInterface
         return $this;
     }
 
+    /**
+     * Adds a constraint that checks whether proxy's ip occurs in response body
+     * 
+     * @return self
+     */
     public function bodyContainsProxyIp(): self
     {
         $this->constraints[] = function (ResponseInterface $response, ProxyInterface $proxy) {

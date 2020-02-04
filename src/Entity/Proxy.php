@@ -4,10 +4,29 @@ namespace Retrowaver\ProxyChecker\Entity;
 
 class Proxy implements ProxyInterface
 {
+    /**
+     * @var string IP or host
+     */
     protected $ip;
+
+    /**
+     * @var int
+     */
     protected $port;
+
+    /**
+     * @var string|null
+     */
     protected $username;
+
+    /**
+     * @var string|null
+     */
     protected $password;
+
+    /**
+     * @var string protocol (http / https / socks4 / socks4a / socks5 / socks5h)
+     */
     protected $protocol;
 
     public function __toString()
