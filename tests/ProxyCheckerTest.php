@@ -46,6 +46,7 @@ final class ProxyCheckerTest extends TestCase
             new Request('GET', 'http://example.com'),
             $trueResponseChecker,
             [],
+            [],
             $this->client
         );
 
@@ -67,6 +68,7 @@ final class ProxyCheckerTest extends TestCase
         $proxyChecker = new ProxyChecker(
             new Request('GET', 'http://example.com'),
             $falseResponseChecker,
+            [],
             [],
             $this->client
         );

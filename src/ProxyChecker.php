@@ -15,17 +15,21 @@ class ProxyChecker
     protected $request;
     protected $responseChecker;
     protected $options;
+    protected $requestOptions;
+    protected $client;
 
     public function __construct(
         RequestInterface $request,
         ResponseCheckerInterface $responseChecker,
         ?array $options = [],
+        ?array $requestOptions = [],
         ?ClientInterface $guzzle = null
     ) {
         $this->request = $request;
         $this->responseChecker = $responseChecker;
-        // TODO $this->options = 
-        $this->client = $guzzle ?? new Client(['http_errors' => false]);
+        $this->options = $options + $this->getDefaultOptions();
+        $this->requestOptions = $requestOptions + $this->getDefaultRequestOptions();
+        $this->client = $guzzle ?? new Client();
     }
 
     public function checkProxies(array $proxies): array
@@ -54,10 +58,25 @@ class ProxyChecker
                 yield $this->client->sendAsync(
                     $this->request,
                     [
-                        'proxy' => (string)$proxy
-                    ]
+                        'proxy' => (string)$proxy,
+                        'http_errors' => false
+                    ] + $this->requestOptions
                 );
             }
         };
+    }
+
+    protected function getDefaultOptions(): array
+    {
+        return [
+            'concurrency' => 50
+        ];
+    }
+
+    protected function getDefaultRequestOptions(): array
+    {
+        return [
+            'timeout' => 20
+        ];
     }
 }
