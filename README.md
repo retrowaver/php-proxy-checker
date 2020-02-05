@@ -5,6 +5,11 @@ Proxy Checker is a PHP library that allows you to quickly check a list of proxie
 - supports many protocols
 - customizable (full control over request / response checking)
 
+## Installation
+```
+composer require retrowaver/proxy-checker
+```
+
 ## How it works?
 `ProxyChecker` constructor takes 2 mandatory arguments:
 - PSR-7 Request
