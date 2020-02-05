@@ -1,5 +1,6 @@
 {
     "name": "retrowaver/proxy-checker",
+    "description": "Proxy Checker is a PHP library that allows you to quickly check a list of proxies.",
     "type": "library",
     "license": "MIT",
     "authors": [
